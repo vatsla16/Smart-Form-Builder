@@ -1,0 +1,43 @@
+# Node (React Frontend)
+frontend/node_modules/
+frontend/build/
+frontend/.env
+frontend/.DS_Store
+
+# Python (Backend)
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.log
+*.db
+*.env
+backend/.DS_Store
+
+# VS Code / IDEs
+.vscode/
+.idea/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Mac system files
+._*
+
+# Logs
+logs/
+*.log
+
+# Testing
+coverage/
+*.cover
+*.egg-info/
+.tox/
+htmlcov/
+.cache/
+
+# Other
+dist/
