@@ -1,0 +1,176 @@
+@import "bootstrap/scss/bootstrap";
+
+// _dnd.scss
+// Styles for the palette items and drop-zone highlights
+
+.field-palette-item {
+  background: #fff;
+  border-radius: 4px;
+  user-select: none;  // don't let text get accidentally selected
+  touch-action: none; // disable default touch scrolling
+}
+
+.form-canvas {
+  border-radius: 4px;
+  // When something is hovering, the border color will change via inline style
+}
+
+// _fields.scss
+// Field-specific tweaks—like warning colors or focus outlines
+
+/* Make missing-label warnings stand out */
+.form-label.text-warning {
+  font-weight: bold;
+}
+
+/* When an input is focused, give a clear outline */
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+  outline: 3px solid rgba(0, 123, 255, 0.25);
+  box-shadow: none;
+}
+
+/* Ensure checkboxes/radios have a visible focus ring */
+.form-check-input:focus-visible {
+  outline: 2px dashed #007bff;
+}
+
+// Inspector Panel
+.inspector-heading {
+    text-transform: capitalize;
+}
+
+// Layout row heights
+.top-row {
+  height: 70vh;
+  display: flex;
+  overflow: hidden;
+}
+.bottom-row {
+  height: 30vh;
+  overflow: auto;
+  width: 100%;
+}
+
+// Palette styles
+.field-palette {
+  background: #fafafa;
+  border-right: 1px solid #e0e0e0;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+// Canvas dropzone styles
+#canvas-dropzone {
+  background: #fff;
+  border-radius: 4px;
+  padding: 1rem;
+  transition: border-color 0.2s;
+  height: 100%;
+  overflow-y: auto;
+}
+
+// Inspector panel styles
+.inspector-panel {
+  background: #fafafa;
+  border-left: 1px solid #e0e0e0;
+  padding: 1rem;
+  height: 100%;
+  overflow-y: auto;
+}
+
+// Simplify buttons
+.btn {
+  border: none;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
+}
+.btn-secondary {
+  background: #e0e0e0;
+  color: #333;
+}
+.btn-danger {
+  background: #ff4d4f;
+  color: #fff;
+}
+
+// Focus indicators
+.form-control:focus,
+.form-select:focus,
+.sortable-field:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+// Minimalist form fields
+.form-control,
+.form-select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+// Responsive adjustments for small screens
+@media (max-width: 480px) {
+  .top-row, .bottom-row {
+    height: auto;
+    flex-direction: column;
+  }
+  .field-palette {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  #canvas-dropzone {
+    width: 100%;
+    border: none !important;
+    border-top: 1px dashed #ccc;
+    margin: 0.5rem 0;
+  }
+  .inspector-panel {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 0.5rem;
+  }
+}
+
+.palette-item-animate {
+  transition: transform 0.15s cubic-bezier(0.4, 0.2, 0.2, 1), box-shadow 0.15s, background 0.15s;
+  cursor: pointer;
+}
+.palette-item-animate:hover,
+.palette-item-animate:focus {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 0.2rem #0d6efd33, 0 2px 8px #0d6efd22;
+  background: #e7f1ff;
+  outline: none;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 1000;
+}
+.skip-link:focus {
+  left: 16px;
+  top: 16px;
+  width: auto;
+  height: auto;
+  padding: 8px 16px;
+  background: #0d6efd;
+  color: #fff;
+  border-radius: 4px;
+  outline: 2px solid #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+
