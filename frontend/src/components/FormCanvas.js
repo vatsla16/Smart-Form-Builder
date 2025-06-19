@@ -30,13 +30,8 @@ const FormCanvas = ({ fields, selectedId, onEdit, onDelete, onSelect }) => {
     <div className="form-canvas w-100" style={{ maxWidth: 700, height: "100%", overflowY: "auto" }}>
       <h4 className="mb-4">Form Canvas</h4>
       {fields.length === 0 ? (
-        <div
-          className="border rounded p-5 text-center text-muted bg-light"
-          style={{ minHeight: 200 }}
-        >
-          <div className="mt-2">
-            Start building your form by clicking elements from the left sidebar.
-          </div>
+        <div className="mt-2">
+          Start building your form by clicking elements from the left sidebar.
         </div>
       ) : (
         <div className="d-flex flex-column gap-3">

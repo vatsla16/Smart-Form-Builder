@@ -60,8 +60,11 @@ const InspectorPanel = ({ field, updateField, checkAccessibility }) => {
     <aside className="inspector-panel p-3 border-start">
       <h5 className="inspector-heading">{field.type} Field Properties</h5>
       <div className="mb-3">
-        <label className="form-label">Label</label>
+        <label className="form-label" htmlFor={`label-${id}`}>
+          Label
+        </label>
         <input
+          id={`label-${id}`}
           type="text"
           className="form-control"
           value={label}

@@ -32,7 +32,7 @@ const FieldPalette = ({ onAdd }) => {
           key={item.type}
           role="button"
           tabIndex={0}
-          className="palette-item palette-item-animate my-2 p-2 bg-white rounded shadow-sm"
+          className="palette-item palette-item-animate my-2 p-3 bg-white rounded shadow-sm"
           onClick={() => onAdd(item.type)}
           onKeyDown={(e) => {
             if (["Enter", " "].includes(e.key)) onAdd(item.type);

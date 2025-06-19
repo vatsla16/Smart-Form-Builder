@@ -172,5 +172,31 @@
   font-weight: bold;
 }
 
+.welcome-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #f4f6f8;
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: none;
+  opacity: 1;
+}
+
+.welcome-content {
+  padding: 2.5rem 3.5rem;
+  text-align: center;
+  animation: welcome-pop 0.7s cubic-bezier(0.4,0.2,0.2,1);
+}
+
+@keyframes welcome-pop {
+  0% { transform: scale(0.9) translateY(30px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
 
 

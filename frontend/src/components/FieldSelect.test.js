@@ -1,0 +1,45 @@
+import React from "react";
+import "@testing-library/jest-dom";
+import { render, screen } from "@testing-library/react";
+import FieldSelect from "./FieldSelect";
+
+import "@testing-library/jest-dom";
+
+describe("FieldSelect", () => {
+  it("renders with label and required asterisk", () => {
+    render(
+      <FieldSelect
+        field={{
+          id: "select-field-1",
+          label: "Country",
+          required: true,
+          settings: {
+            textColor: "#000",
+            backgroundColor: "#fff",
+            options: [{ value: "us", label: "USA" }],
+          },
+        }}
+      />
+    );
+    expect(screen.getByText(/country/i)).toBeInTheDocument();
+    expect(screen.getByText("*")).toBeInTheDocument();
+  });
+
+  it("renders missing label warning if label is empty", () => {
+    render(
+      <FieldSelect
+        field={{
+          id: "select-field-2",
+          label: "",
+          required: false,
+          settings: {
+            textColor: "#000",
+            backgroundColor: "#fff",
+            options: [{ value: "us", label: "USA" }],
+          },
+        }}
+      />
+    );
+    expect(screen.getByText(/missing label/i)).toBeInTheDocument();
+  });
+});

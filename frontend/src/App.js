@@ -10,6 +10,15 @@ const App = () => {
   const [fields, setFields] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
+  const [showWelcome, setShowWelcome] = useState(true);
+
+  // Welcome screen timeout
+  useEffect(() => {
+    const hideTimer = setTimeout(() => setShowWelcome(false), 1000); // Hide after 1.5s
+    return () => {
+      clearTimeout(hideTimer);
+    };
+  }, []);
 
   // Load fields from localStorage on mount
   useEffect(() => {
@@ -84,74 +93,90 @@ const App = () => {
 
   return (
     <>
-      {/* Skip links for accessibility */}
-      <nav aria-label="Skip links">
-        <a href="#add-fields" className="skip-link">
-          Skip to Add Fields
-        </a>
-        <a href="#form-canvas" className="skip-link">
-          Skip to Canvas
-        </a>
-        <a href="#field-properties" className="skip-link">
-          Skip to Field Properties
-        </a>
-      </nav>
-      <div className="d-flex flex-column" style={{ height: "100vh", minHeight: 0 }}>
-        {/* Header Bar (white background, dark text) */}
-        <header
-          className="d-flex align-items-center justify-content-between gap-2 px-4 py-3 border-bottom bg-white shadow rounded-bottom"
-          style={{ minHeight: 70 }}
-        >
-          <div className="d-flex align-items-center gap-2">
-            <h1 className="m-0 fw-bold fs-5 text-dark">Smart Form Builder</h1>
+      {showWelcome && (
+        <div className="welcome-screen">
+          <div className="welcome-content">
+            <h2>Welcome to Smart Form Builder</h2>
+            <p>Build accessible forms with ease!</p>
           </div>
-          <ExportBar fields={fields} onReorder={setFields} />
-        </header>
-        <div className="d-flex flex-grow-1 h-100" style={{ minHeight: 0 }}>
-          {/* Left: Field Palette (full height, scrollable) */}
-          <div
-            id="add-fields"
-            tabIndex={-1}
-            className="border-end h-100"
-            style={{
-              width: 280,
-              minWidth: 220,
-              background: "#fafafa",
-              height: "100%",
-              overflowY: "auto",
-            }}
+        </div>
+      )}
+      <div
+        style={{
+          opacity: showWelcome ? 0.2 : 1,
+          pointerEvents: showWelcome ? "none" : "auto",
+          transition: "opacity 0.4s",
+        }}
+      >
+        {/* Skip links for accessibility */}
+        <nav aria-label="Skip links">
+          <a href="#add-fields" className="skip-link">
+            Skip to Add Fields
+          </a>
+          <a href="#form-canvas" className="skip-link">
+            Skip to Canvas
+          </a>
+          <a href="#field-properties" className="skip-link">
+            Skip to Field Properties
+          </a>
+        </nav>
+        <div className="d-flex flex-column" style={{ height: "100vh", minHeight: 0 }}>
+          {/* Header Bar (white background, dark text) */}
+          <header
+            className="d-flex align-items-center justify-content-between gap-2 px-4 py-3 border-bottom bg-white shadow rounded-bottom"
+            style={{ minHeight: 70 }}
           >
-            <FieldPalette onAdd={addField} />
-          </div>
-          {/* Center: Form Canvas (scrollable) */}
-          <main
-            id="form-canvas"
-            tabIndex={-1}
-            className="flex-grow-1 p-4 d-flex justify-content-center align-items-start"
-            style={{ height: "100%", overflowY: "auto", minHeight: 0 }}
-          >
-            <FormCanvas
-              fields={fields}
-              selectedId={selectedId}
-              onEdit={editField}
-              onDelete={deleteField}
-              onSelect={editField}
-              moveField={moveField}
-            />
-          </main>
-          {/* Right: Inspector Panel (scrollable) */}
-          <div
-            id="field-properties"
-            tabIndex={-1}
-            className="border-start"
-            style={{ width: 340, minWidth: 260, height: "100%", overflowY: "auto" }}
-          >
-            <InspectorPanel
-              field={selectedField}
-              suggestions={suggestions.filter((s) => s.field_id === selectedId)}
-              updateField={updateField}
-              checkAccessibility={checkAccessibility}
-            />
+            <div className="d-flex align-items-center gap-2">
+              <h1 className="m-0 fw-bold fs-5 text-dark">Smart Form Builder</h1>
+            </div>
+            <ExportBar fields={fields} onReorder={setFields} />
+          </header>
+          <div className="d-flex flex-grow-1 h-100" style={{ minHeight: 0 }}>
+            {/* Left: Field Palette (full height, scrollable) */}
+            <div
+              id="add-fields"
+              tabIndex={-1}
+              className="border-end h-100"
+              style={{
+                width: 280,
+                minWidth: 220,
+                background: "#fafafa",
+                height: "100%",
+                overflowY: "auto",
+              }}
+            >
+              <FieldPalette onAdd={addField} />
+            </div>
+            {/* Center: Form Canvas (scrollable) */}
+            <main
+              id="form-canvas"
+              tabIndex={-1}
+              className="flex-grow-1 p-4 d-flex justify-content-center align-items-start"
+              style={{ height: "100%", overflowY: "auto", minHeight: 0 }}
+            >
+              <FormCanvas
+                fields={fields}
+                selectedId={selectedId}
+                onEdit={editField}
+                onDelete={deleteField}
+                onSelect={editField}
+                moveField={moveField}
+              />
+            </main>
+            {/* Right: Inspector Panel (scrollable) */}
+            <div
+              id="field-properties"
+              tabIndex={-1}
+              className="border-start"
+              style={{ width: 340, minWidth: 260, height: "100%", overflowY: "auto" }}
+            >
+              <InspectorPanel
+                field={selectedField}
+                suggestions={suggestions.filter((s) => s.field_id === selectedId)}
+                updateField={updateField}
+                checkAccessibility={checkAccessibility}
+              />
+            </div>
           </div>
         </div>
       </div>
