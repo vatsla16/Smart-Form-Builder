@@ -67,7 +67,8 @@ const App = () => {
 
   const checkAccessibility = async () => {
     try {
-      const res = await fetch("http://localhost:8000/validate-form/", {
+      const res = await fetch("http://104.236.235.19:8001/validate-form/", {
+        //  const res = await fetch("http://localhost:8000/validate-form/"
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(fields),
