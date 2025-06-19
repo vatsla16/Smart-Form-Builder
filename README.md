@@ -48,7 +48,6 @@ cd frontend
 npm install
 npm start
 ```
-- Runs at http://localhost:3000
 
 **Backend**
 ```bash
@@ -56,7 +55,6 @@ cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload
 ```
-- Runs at http://localhost:8000
 
 ## 🧑‍💻 How to Use
 1. Click a field type to add it.
